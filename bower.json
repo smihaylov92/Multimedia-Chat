@@ -1,0 +1,22 @@
+{
+  "name": "Multimedia-Chat",
+  "authors": [
+    "QuestarAI"
+  ],
+  "description": "Chat with multimedia",
+  "main": "index.html",
+  "keywords": [
+    "Multimedia-Chat"
+  ],
+  "license": "",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "bower_components"
+  ],
+  "dependencies": {
+    "iron-ajax": "^1.2.0",
+    "polymer": "^1.6.0"
+  }
+}
