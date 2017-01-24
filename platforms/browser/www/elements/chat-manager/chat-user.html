@@ -1,0 +1,65 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+
+<dom-module id="chat-user">
+	<template>
+		<style>
+			:host {
+				display: block;
+				height: 50px;
+				line-height: 50px;
+				border-bottom: 3px solid #01b2b2;
+				background-color: #bdf9f9;
+				color: #505151;
+			}
+
+			:host .name-field {
+				float: left;
+				margin-left: 20px;
+			}
+
+			:host .status-field {
+				float: right;
+				margin-right: 20px;
+				margin-top: 10px;
+				width: 30px; 
+				height: 30px; 
+				border-radius: 15px; 
+			}
+
+			:host[status=online] .status-field {
+				background-color: green;
+			}
+
+			:host[status=dnd] .status-field {
+				background-color: yellow;
+			}
+
+			:host[status=offline] .status-field {
+				background-color: red;
+			}
+		</style>
+
+		<div class="name-field">
+			[[name]]
+		</div>
+		<div class="status-field">
+		</div>
+	</template>
+
+	<script>
+		(function(){
+			'use strict';
+			Polymer({
+				is: 'chat-user',
+				properties: {
+					status: {
+						type: String,
+						reflectToAttribute: true
+					},
+					name: String
+				}
+			});
+		})();
+	</script>
+
+</dom-module>

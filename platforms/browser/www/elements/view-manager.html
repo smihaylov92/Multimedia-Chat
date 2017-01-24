@@ -5,10 +5,7 @@
 	    <style>
 			:host {
 	            display: block;
-	            width: 100%;
-	            height: 100%;
 	            background: white;
-	            overflow: auto;
 	        }
 
 	        :host ::content view-item {
@@ -29,8 +26,57 @@
 	<script>
 		(function(){
 			'use strict';
+
+
 			Polymer({
-				is: 'view-manager'
+				is: 'view-item'
+			});
+
+			Polymer({
+				is: 'view-manager',
+				properties: {
+	                currentView: {
+	                    type: String,
+	                    value: "chat-manager",
+	                    notify: true
+	                }
+	            },
+
+	            listeners: {
+	                'current-view-change': '_updateView'
+	            },
+
+	            ready: function() {
+	                this.__views = {};
+	                this.__initElements();
+	            },
+
+	            /**
+	             * creates a data structure of views and their names
+	             */
+	            __initElements: function() {
+	                Polymer.dom(this).querySelectorAll('view-item')
+	                    .forEach(function(item, index) {
+	                        var viewName = item.getAttribute('name');
+	                        this.__views[viewName] = item;
+	                        if (viewName === this.currentView) {
+	                            item.setAttribute('selected', '');
+	                        }
+	                    }.bind(this));
+	            },
+
+	            /**
+	             * updateds the selected vuew
+	             */
+	            _updateView: function() {
+	                Polymer.dom(this).querySelectorAll('view-item[selected]').
+	                    forEach(function(item) {
+	                        item.removeAttribute('selected')
+	                    });
+
+	                this.__views[this.currentView].
+	                    setAttribute('selected', '');
+	            }
 			});
 		})();
 	</script>

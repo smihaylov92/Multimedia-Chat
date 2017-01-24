@@ -1,19 +1,40 @@
 <link rel="import" href="../../../bower_components/polymer/polymer.html">
+<link rel="import" href="./chat-user.html">
 
 <dom-module id="chat-manager">
   	<template>
 	    <style>
-			/* local DOM styles go here */
-	    </style>
 
-	<!-- local DOM goes here -->
+	    </style>
+	    <template is="dom-repeat" items="[[friends]]">
+	        <chat-user name="[[item.name]]" status="[[item.status]]"></chat-user>
+    	</template>
 	</template>
 
 	<script>
 		(function(){
 			'use strict';
 			Polymer({
-				is: 'chat-manager'
+				is: 'chat-manager',
+				properties: {
+					friends: {
+						type: Array,
+						value: [
+							{
+								name: 'Stanislav Mihaylov',
+								status: 'online'
+							},
+							{
+								name: 'Ivan Ivanov',
+								status: 'dnd'
+							},
+							{
+								name: 'Georgi Georgiev',
+								status: 'offline'
+							}
+						]
+					}
+				}
 			});
 		})();
 	</script>
