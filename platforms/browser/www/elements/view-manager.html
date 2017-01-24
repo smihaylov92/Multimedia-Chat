@@ -1,0 +1,38 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="view-manager">
+  	<template>
+	    <style>
+			:host {
+	            display: block;
+	            width: 100%;
+	            height: 100%;
+	            background: white;
+	            overflow: auto;
+	        }
+
+	        :host ::content view-item {
+	            position: relative;
+	            display: block;
+	            width: 100%;
+	            height: 100%;
+	        }
+
+	        :host ::content view-item:not([selected]) {
+	            display: none;
+	        }
+	    </style>
+
+		<content></content>
+	</template>
+
+	<script>
+		(function(){
+			'use strict';
+			Polymer({
+				is: 'view-manager'
+			});
+		})();
+	</script>
+
+</dom-module>
