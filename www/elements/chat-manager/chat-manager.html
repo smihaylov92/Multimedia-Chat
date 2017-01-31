@@ -1,14 +1,22 @@
 <link rel="import" href="../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../behaviours/chat-state-store.html">
+<link rel="import" href="../chat-header/chat-header.html">
 <link rel="import" href="./chat-user.html">
 
 <dom-module id="chat-manager">
   	<template>
 	    <style>
-
+		    :host {
+		    	height: 100%;
+			    width: 100%;
+			    display: block;
+		    }
 	    </style>
+	    <chat-header heading="{{currentUser}}"></chat-header>
 	    <template is="dom-repeat" items="[[friends]]">
 	        <chat-user name="[[item.name]]" status="[[item.status]]"></chat-user>
     	</template>
+	    <chat-state-store id="chatStore"  on-state-changed="onUserReady"></chat-state-store>
 	</template>
 
 	<script>
@@ -17,13 +25,16 @@
 			Polymer({
 				is: 'chat-manager',
 				properties: {
+					currentUser: {
+						type: String
+					},
 					friends: {
 						type: Array,
 						value: [
-							{
-								name: 'Stanislav Mihaylov',
-								status: 'online'
-							},
+							// {
+							// 	name: 'Stanislav Mihaylov',
+							// 	status: 'online'
+							// },
 							{
 								name: 'Ivan Ivanov',
 								status: 'dnd'
@@ -34,6 +45,11 @@
 							}
 						]
 					}
+				},
+				onUserReady: function(e){
+					this.currentUser = e.detail.currentUserName;
+					console.log(this.currentUser);
+					this.fire('app-route-change', 'chat-manager');
 				}
 			});
 		})();

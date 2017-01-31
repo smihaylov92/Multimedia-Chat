@@ -31,7 +31,7 @@
 			  	properties: {
 			  		route: {
 			  			type: String,
-			  			value: "chat-manager" // login, chat-manager, chat-window
+			  			value: "login" // login, chat-manager, chat-window
 			  		}
 			  	},
 
@@ -40,6 +40,7 @@
 			  	},
 
 			  	onAppRouteChange: function(e, route){
+			  		console.log("change");
 			  		this.route = route;
 			  	}
 			});

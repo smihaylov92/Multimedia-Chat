@@ -1,19 +1,29 @@
 <link rel="import" href="../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../behaviours/chat-state-store.html">
 
 <dom-module id="chat-window">
   	<template>
 	    <style>
 			/* local DOM styles go here */
 	    </style>
-
-	<!-- local DOM goes here -->
+	<chat-state-store id="chatInfoStore" on-state-changed="updateUser"></chat-state-store>
+	Random chat appears with {{chatUserName}}
 	</template>
-
 	<script>
 		(function(){
 			'use strict';
 			Polymer({
-				is: 'chat-window'
+				is: 'chat-window',
+				properties: {
+					chatUserName: {
+						type: String,
+						value: null
+					}
+				},
+				updateUser: function(e){
+					this.chatUserName = e.detail.chatUser;
+				}
+
 			});
 		})();
 	</script>

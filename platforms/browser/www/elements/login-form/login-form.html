@@ -1,19 +1,78 @@
 <link rel="import" href="../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../behaviours/chat-state-store.html">
 
 <dom-module id="login-form">
   	<template>
 	    <style>
-			/* local DOM styles go here */
-	    </style>
+			:host {
+				display: block;
+				margin: auto;
+				background-color: #3281ff;
+				position: relative;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				padding: 0px 20px;
+				color: #ffffff;
+			}
 
-	<!-- local DOM goes here -->
+			:host input {
+			    width: 300px;
+			    height: 35px;
+			    border: 0px;
+			    padding: 0px;
+			    text-indent: 5px;
+			} 
+
+			:host .login-lbl {
+				line-height: 40px;
+			}
+
+			:host button {
+				height: 30px;
+			    width: 100px;
+			    padding: 0px;
+			    border: 0px;
+			    background-color: #0042ad;
+			    color: #ffffff;
+			    cursor: pointer;
+			}
+
+			:host .buttonWrapper {
+				width: 100%;
+				height: 30px;
+				text-align: center;
+				margin: 10px 0px;
+			}
+	    </style>
+		<div>
+			<div class="login-lbl">First Name:</div>
+			<input id="firstname" type="text" name="firstname">
+		</div>
+		<div>
+			<div class="login-lbl">Last Name: </div>
+			<input id="lastname" type="text" name="lastname">
+		</div>
+		<div class="buttonWrapper">
+			<button id="login">Login</button>
+		</div>
+		<chat-state-store id="chatInfoStore"></chat-state-store>
 	</template>
 
 	<script>
 		(function(){
 			'use strict';
 			Polymer({
-				is: 'login-form'
+				is: 'login-form',
+				listeners: {
+					'login.tap': 'login'
+				},
+
+				login: function(e){
+					var name = this.$.firstname.value + ' ' + this.$.lastname.value;
+					this.$.chatInfoStore.setCurrentUserName(name);
+				}
 			});
 		})();
 	</script>

@@ -1,0 +1,33 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+
+<dom-module id="chat-header">
+	<template>
+		<style>
+			:host {
+				display: block;
+				height: 50px;
+				width: 100%;
+				line-height: 50px;
+			    background-color: #3281ff;
+			    color: #ffffff;
+			}
+		</style>
+
+		{{ heading }}
+	</template>
+
+	<script>
+		(function(){
+			'use strict';
+			Polymer({
+				is: 'chat-header',
+				properties: {
+					heading: {
+						type: String
+					}
+				}
+			});
+		})();
+	</script>
+
+</dom-module>
