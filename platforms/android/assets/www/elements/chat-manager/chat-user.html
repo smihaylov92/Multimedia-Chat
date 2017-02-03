@@ -1,4 +1,5 @@
-<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../behaviours/chat-state-store.html">
 
 <dom-module id="chat-user">
 	<template>
@@ -38,7 +39,7 @@
 				background-color: red;
 			}
 		</style>
-
+		<chat-state-store id="chatInfoStore"></chat-state-store>
 		<div class="name-field">
 			[[name]]
 		</div>
@@ -57,6 +58,15 @@
 						reflectToAttribute: true
 					},
 					name: String
+				},
+
+				listeners: {
+					'tap': 'onOpenChatWindow'
+				},
+				onOpenChatWindow: function() {
+					console.log(this.$.chatInfoStore);
+					this.$.chatInfoStore.setChatUserName(this.name);
+					this.fire('app-route-change', 'chat-window');
 				}
 			});
 		})();

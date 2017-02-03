@@ -17,6 +17,8 @@
   ],
   "dependencies": {
     "iron-ajax": "^1.2.0",
-    "polymer": "^1.6.0"
+    "polymer": "^1.6.0",
+    "polymer-redux": "",
+    "redux": "https://cdnjs.cloudflare.com/ajax/libs/redux/3.0.4/redux.js"
   }
 }

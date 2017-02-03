@@ -10,6 +10,7 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
         // this.receivedEvent('deviceready');
+        window.ObjectAssign.polyfill();
     },
 
     // Update DOM on a Received Event
